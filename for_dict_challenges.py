@@ -7,17 +7,19 @@ students = [
   {'first_name': 'Маша'},
   {'first_name': 'Маша'},
   {'first_name': 'Петя'},
+  {'first_name': 'Петя'}
 ]
-used_name = []
+
+dict_students = {}
 for student in students:
-    name = student['first_name']
-    count = 0
-    if not name in used_name:
-        for student in students:
-            if name == student['first_name']:
-                count += 1
-        print(f'{name}: {count}')
-    used_name.append(name)
+    name = (student['first_name'])
+    if name in dict_students:
+        count = dict_students[name] + 1
+        dict_students[name] = count
+    else:
+        dict_students[name] = 1
+for student in dict_students:
+    print(f'{student}: {dict_students[student]}')
 
 # Пример вывода:
 # Вася: 1
@@ -60,17 +62,20 @@ school_students = [
 ]
 
 for counter, school_class in enumerate(school_students, 1):
+    dict_students = {}
     max_count = 0
     for student in school_class:
         name = student['first_name']
-        count = 0
-        for student in school_class:
-            if name == student['first_name']:
-                count += 1
-        if count > max_count:
-            max_count = count
-            max_name = name
-    print(f'Самое частое имя в классе {counter}: {max_name}')
+        if name in dict_students:
+            count = dict_students[name] + 1
+            dict_students[name] = count
+        else:
+            dict_students[name] = 1
+    for student in dict_students:
+        if max_count < dict_students[student]:
+            max_count = dict_students[student]
+            max_student = student
+    print(f'Самое частое имя в классе {counter}: {max_student}')
 
 # Пример вывода:
 # Самое частое имя в классе 1: Вася
