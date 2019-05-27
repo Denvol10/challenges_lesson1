@@ -25,7 +25,11 @@ is_male = {
 }
 names = ['Оля', 'Петя', 'Вася', 'Маша']
 for name in names:
-    print(name, is_male[name])
+    print(name, end= ' : ')
+    if is_male[name]:
+        print('мальчик')
+    else:
+        print('девочка')
 
 
 # Задание 4
@@ -55,9 +59,8 @@ groups = [
   ['Вася', 'Маша'],
   ['Оля', 'Петя', 'Гриша'],
 ]
-number = 1
+
 dots = ', '
-for group in groups:
+for number, group in enumerate(groups, 1):
     str_group = dots.join(group)
     print(f'Группа {number}: {str_group}')
-    number += 1

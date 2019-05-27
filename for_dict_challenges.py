@@ -8,13 +8,16 @@ students = [
   {'first_name': 'Маша'},
   {'first_name': 'Петя'},
 ]
-from collections import Counter
-list_student = []
+used_name = []
 for student in students:
-    list_student.append(student['first_name'])
-count = Counter(list_student)
-for student in set(list_student):
-    print(f'{student}: {count[student]}')
+    name = student['first_name']
+    count = 0
+    if not name in used_name:
+        for student in students:
+            if name == student['first_name']:
+                count += 1
+        print(f'{name}: {count}')
+    used_name.append(name)
 
 # Пример вывода:
 # Вася: 1
@@ -31,7 +34,7 @@ students = [
   {'first_name': 'Маша'},
   {'first_name': 'Оля'},
 ]
-
+from collections import Counter
 list_student = []
 for student in students:
     list_student.append(student['first_name'])
@@ -40,6 +43,7 @@ print(f'Самое частое имя среди учеников: {count[0][0]
 
 # Пример вывода:
 # Самое частое имя среди учеников: Маша
+
 print('\n\n')
 # Задание 3
 # Есть список учеников в нескольких классах, нужно вывести самое частое имя в каждом классе.
@@ -54,14 +58,19 @@ school_students = [
     {'first_name': 'Оля'},
   ]
 ]
-class_number = 0
-for school_class in school_students:
-    list_student = []
-    class_number += 1
+
+for counter, school_class in enumerate(school_students, 1):
+    max_count = 0
     for student in school_class:
-        list_student.append(student['first_name'])
-    count = Counter(list_student).most_common(1)
-    print(f'Самое частое имя в классе {class_number} : {count[0][0]}')
+        name = student['first_name']
+        count = 0
+        for student in school_class:
+            if name == student['first_name']:
+                count += 1
+        if count > max_count:
+            max_count = count
+            max_name = name
+    print(f'Самое частое имя в классе {counter}: {max_name}')
 
 # Пример вывода:
 # Самое частое имя в классе 1: Вася
