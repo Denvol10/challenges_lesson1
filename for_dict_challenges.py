@@ -12,14 +12,13 @@ students = [
 
 dict_students = {}
 for student in students:
-    name = (student['first_name'])
+    name = student['first_name']
     if name in dict_students:
-        count = dict_students[name] + 1
-        dict_students[name] = count
+        dict_students[name] += 1
     else:
         dict_students[name] = 1
-for student in dict_students:
-    print(f'{student}: {dict_students[student]}')
+for student_name, count in dict_students.items():
+    print(f'{student_name}: {count}')
 
 # Пример вывода:
 # Вася: 1
